@@ -21,15 +21,16 @@
         </transition>
         <div class="header-top">
             <div class="container">
-                <div  @click="openLang = !openLang" class="select">
-                    <div class="selected-wrapper">
-                        <div class="selected">Узбекча</div>
+                <div class="select">
+                    <div class="selected-wrapper" @click="store.toggle">
+                        <div class="selected">{{ store.current }}</div>
                         <img src="~/assets/img/svg/chevron-down.svg" alt="" width="14" height="14">
                     </div>
                     <transition name="lang">
-                        <div v-if="openLang" class="options">
-                            <div class="option">Узбекча</div>
-                            <div class="option">Ruscha</div>
+                        <div v-show="store.isOpen" class="options">
+                            <ul v-for="language in store.languages" :key="language">
+                                <li @click="store.change($event)">{{ language.language }}</li>
+                            </ul>
                         </div>
                     </transition>
                 </div>
@@ -48,30 +49,9 @@
                     <img src="~/assets/img/svg/logo.svg" alt="logo" width="60" height="60">
                 </NuxtLink>
                 <ul class="nav">
-                    <li v-for="(menu, index) in navbarMenus" :key="index" class="item">
+                    <li v-for="(menu, index) in store.navbarMenus" :key="index" class="item">
                         <NuxtLink :to="menu.url">{{menu.name}}</NuxtLink>
                     </li>
-                    <!-- <li class="item">
-                        <NuxtLink>Технология</NuxtLink>
-                    </li>
-                    <li class="item">
-                        <NuxtLink to="/worldAbout">Жахон</NuxtLink>
-                    </li>
-                    <li class="item">
-                        <NuxtLink>Фарғона</NuxtLink>
-                    </li>
-                    <li class="item">
-                        <NuxtLink>Жамият</NuxtLink>
-                    </li>
-                    <li class="item">
-                        <NuxtLink>Сиёсат</NuxtLink>
-                    </li>
-                    <li class="item">
-                        <NuxtLink>Муҳокама</NuxtLink>
-                    </li>
-                    <li class="item">
-                        <NuxtLink>Спорт</NuxtLink>
-                    </li> -->
                 </ul>
                 <div @click="search = true" class="search">
                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -89,18 +69,19 @@
                     <NuxtLink class="logo-link" to="/">
                         <img src="~/assets/img/svg/logo.svg" alt="logo" width="83" height="83">
                     </NuxtLink>
-                    <div  @click="openLang = !openLang" class="select">
-                        <div class="selected-wrapper">
-                            <div class="selected">Узбекча</div>
-                            <img src="~/assets/img/svg/chevron-down.svg" alt="" width="14" height="14">
-                        </div>
-                        <transition name="lang">
-                            <div v-if="openLang" class="options">
-                                <div class="option">Узбекча</div>
-                                <div class="option">Ruscha</div>
-                            </div>
-                        </transition>
+                    <div class="select">
+                    <div class="selected-wrapper" @click="store.toggle">
+                        <div class="selected">{{ store.current }}</div>
+                        <img src="~/assets/img/svg/chevron-down.svg" alt="" width="14" height="14">
                     </div>
+                    <transition name="lang">
+                        <div v-show="store.isOpen" class="options">
+                            <ul v-for="language in store.languages" :key="language">
+                                <li @click="store.change($event)">{{ language.language }}</li>
+                            </ul>
+                        </div>
+                    </transition>
+                </div>
     
                     <img @click="openMenu = false" class="close" src="~/assets/img/svg/close.svg" alt="close" width="26" height="26">
                 </div>
@@ -132,41 +113,22 @@
                 </div>
             </div>
         </transition>
-
     </header>
 </template>
 
 <script setup>
-const openLang = ref(false);
+import { gsap } from "gsap";
+import { ref } from "vue"
+import { useStore } from "~~/stores/store";
+const store = useStore()
 const openMenu = ref(false);
 const search = ref(false);
-const navbarMenus = ref([
-    {name: 'Ўзбекистон', url: '/'}, 
-    {name: 'Технология', url: '/'}, 
-    {name: 'Жахон', url: '/worldAbout'}, 
-    {name: 'Фарғона', url: '/'}, 
-    {name: 'Жамият', url: '/'}, 
-    {name: 'Сиёсат', url: '/'}, 
-    {name: 'Муҳокама', url: '/'}, 
-    {name: 'Спорт', url: '/'}
-])
 
-// onMounted(()=>{
-//     document.querySelectorAll('.nav .item')[0].classList.add('active')
-// })
 
-// function changeActive(event){
-    
-//     const lists = document.querySelectorAll('.nav .item');
-//     lists.forEach(item => {
-//         item.classList.remove('active')
-//         if(item === event.target.parentElement ) {
-//             event.target.parentElement.classList.add('active');
-//             console.log('add');
-//         }
-//     })
-   
-// }
+onMounted(() => {
+    // gsap.to('.header-top', { duration: 1, x: 100 });  
+})
+
 
 </script>
 

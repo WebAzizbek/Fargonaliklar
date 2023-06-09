@@ -90,8 +90,9 @@
 // }
 
 html {
-  scroll-behavior: smooth;
+  // scroll-behavior: smooth;
   height: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -181,14 +182,15 @@ header {
           width: 100%;
           overflow: hidden;
           border-radius: 8.5px;
-          .option:first-child {
-            padding: 10px 13px 5px 13px;
-          }
-          .option:last-child {
-            padding: 5px 13px 10px 13px;
-          }
-          .option:hover {
-            opacity: 0.8;
+          z-index: 2;
+          padding: 5px 0;
+          ul {
+            li {
+              padding: 5px 13px 5px 13px;
+            }
+            li:hover {
+              opacity: 0.8;
+            }
           }
         }
       }
@@ -273,7 +275,7 @@ header {
             }
           }
         }
-        li.active{
+        li.active {
           a {
             color: #dfad2a;
           }
@@ -395,14 +397,15 @@ header {
         width: 100%;
         overflow: hidden;
         border-radius: 8.5px;
-        .option:first-child {
-          padding: 10px 13px 5px 13px;
-        }
-        .option:last-child {
-          padding: 5px 13px 10px 13px;
-        }
-        .option:hover {
-          opacity: 0.8;
+        z-index: 2;
+        padding: 5px 0;
+        ul {
+          li {
+            padding: 5px 13px 5px 13px;
+          }
+          li:hover {
+            opacity: 0.8;
+          }
         }
       }
     }
@@ -425,6 +428,7 @@ header {
     }
   }
 }
+
 .adverb {
   margin: 30px 0;
   @include media(900px) {
@@ -494,15 +498,27 @@ header {
     }
   }
 }
+
 .new {
+  scroll-behavior: initial;
   &:hover {
     .text {
       color: #727272;
     }
+    .img-wrapper {
+      img {
+          transform: scale(1.1);
+      }
+    }
   }
   .img-wrapper {
     margin-bottom: 10px;
+    overflow: hidden;
     img {
+      transition: all 0.3s;
+      &:hover {
+        transform: scale(1.1);
+      }
       @include media(510px) {
         width: 100%;
       }
@@ -1273,7 +1289,6 @@ footer {
     }
   }
 }
-
 
 @keyframes scale {
   0% {

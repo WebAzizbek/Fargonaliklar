@@ -6,30 +6,16 @@
             </nuxt-link>
 
             <div class="footer-nav">
+
+
+                
+
+            
+
+
                 <div class="item-wrapper">
-                    <div class="item">
-                        <nuxt-link to="/">Ўзбекистон</nuxt-link>
-                    </div>
-                    <div class="item">
-                        <nuxt-link>Технология</nuxt-link>
-                    </div>
-                    <div class="item">
-                        <nuxt-link to="/worldAbout">Жахон</nuxt-link>
-                    </div>
-                    <div class="item">
-                        <nuxt-link>Фарғона</nuxt-link>
-                    </div>
-                    <div class="item">
-                        <nuxt-link>Жамият</nuxt-link>
-                    </div>
-                    <div class="item">
-                        <nuxt-link>Сиёсат</nuxt-link>
-                    </div>
-                    <div class="item">
-                        <nuxt-link>Муҳокама</nuxt-link>
-                    </div>
-                    <div class="item">
-                        <nuxt-link>Спорт</nuxt-link>
+                    <div v-for="(menu, index) in store.navbarMenus" :key="index"  class="item">
+                        <NuxtLink :to="menu.url">{{menu.name}}</NuxtLink>
                     </div>
                 </div>
                 <p class="footer-bottom">2021 © Фарғоналиклар Барча ҳуқуқлар ҳимоя қилинган</p>
@@ -119,5 +105,7 @@
 </template>
 
 <script setup>
-
+import { ref } from "vue"
+import { useStore } from "~~/stores/store";
+const store = useStore()
 </script>

@@ -6,6 +6,7 @@
   <footer-nav />
 </template>
 <script setup>
+
 </script>
 
 <style>

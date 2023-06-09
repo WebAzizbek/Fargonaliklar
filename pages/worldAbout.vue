@@ -189,5 +189,5 @@
 
 <script setup>
 // import watch from '~/components/watch.vue';
-
+window.scrollTo({ top: 0 });
 </script>

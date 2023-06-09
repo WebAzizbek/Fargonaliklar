@@ -11,6 +11,6 @@
 </template>
 
 <script setup>
-
+window.scrollTo({ top: 0 });
 </script>
 

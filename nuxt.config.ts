@@ -6,7 +6,15 @@ export default ({
     ],
     app: {
         pageTransition: {
-            name:'page'
+            name: 'page'
         }
+    },
+    head: {
+        script: [
+            {
+                src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js',
+                body: true
+            }
+        ]
     }
 })
